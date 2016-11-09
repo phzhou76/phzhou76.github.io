@@ -1,17 +1,13 @@
 // Scripts for Phillip's Portfolio.
 
-/* When the menu-close element in the sidebar container is clicked, the 
- * sidebar will close. */
-$("#menu-close").click(function (event) {
-    event.preventDefault();
-    $("#sidebar-container").toggleClass("active");
-});
-
 /* When the menu-open element in the sidebar container is clicked, the
  * sidebar will open, covering up the menu-open element. */
-$("#menu-open").click(function (event) {
+$("#menu-toggle").click(function (event) {
     event.preventDefault();
+    $("#toggle-right").toggleClass("active");
+    $("#toggle-left").toggleClass("active");
     $("#sidebar-container").toggleClass("active");
+    $(".sidebar-nav li a").toggleClass("active");
 });
 
 /* This function will move the user to the clicked section. The function listens to

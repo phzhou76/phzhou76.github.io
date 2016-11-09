@@ -23,15 +23,18 @@
 </head>
 <body>
     <!-- Navigation Sidebar -->
-    <a id="menu-open" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-toggle-right"></i></a>
     <nav id="sidebar-container">
         <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-dark btn-lg pull-right toggle"><i class="fa fa-toggle-left"></i></a>
+            <!-- Toggle button for the sidebar. -->
+            <a id="menu-toggle" href="#" class="btn btn-dark btn-lg pull-right">
+                <i id="toggle-right" class="toggle-right fa fa-toggle-right"></i>
+                <i id="toggle-left" class="active toggle-left fa fa-toggle-left"></i>
+            </a>
             <li class="sidebar-brand">
                 <a href="#">Menu</a>
             </li>
             <li>
-                <a href="#top" onclick=$("#menu-close").click();>Home</a>
+                <a id="top-sec" href="#top" onclick=$("#menu-close").click();>Home</a>
             </li>
             <li>
                 <a href="#about" onclick=$("#menu-close").click();>About</a>

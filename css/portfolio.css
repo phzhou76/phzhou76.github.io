@@ -62,11 +62,12 @@ hr.small {
     z-index: 1000;
     position: fixed;
     left: 0;
+    display: block;
     width: 250px;
     height: 100%;
-    transform: translateX(-250px);
+    transform: translateX(-175px);
     overflow-y: auto;
-    background: rgba(75, 75, 75, 0.75);
+    background-color: transparent;
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -89,7 +90,6 @@ hr.small {
     }
 
         .sidebar-nav li a {
-            display: block;
             text-decoration: none;
             color: #999;
         }
@@ -102,6 +102,7 @@ hr.small {
 
             .sidebar-nav li a:active,
             .sidebar-nav li a:focus {
+                display: block;
                 text-decoration: none;
             }
 
@@ -113,23 +114,17 @@ hr.small {
     }
 
         .sidebar-nav > .sidebar-brand a {
-            color: #ffffff
+            color: #ffffff;
         }
 
             .sidebar-nav > .sidebar-brand a:hover {
                 background: none;
             }
 
-#menu-open {
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    left: 1%;
-}
-
 #sidebar-container.active {
-    left: 250px;
+    left: 175px;
     width: 250px;
+    background-color: rgba(35,35,35,1.0);
     -webkit-transition: all 0.4s ease 0s;
     -moz-transition: all 0.4s ease 0s;
     -ms-transition: all 0.4s ease 0s;
@@ -137,11 +132,26 @@ hr.small {
     transition: all 0.4s ease 0s;
 }
 
-.toggle {
-    margin: 5px 5px 0 0;
+#menu-toggle {
+    position: relative;
+    top: 10px;
+    right: 10px;
     background-color: transparent;
     font-size: 36px;
 }
+
+    #menu-toggle i {
+        position: absolute;
+        left: 0;
+        -webkit-transition: opacity 1s ease-in-out;
+        -moz-transition: opacity 1s ease-in-out;
+        -o-transition: opacity 1s ease-in-out;
+        transition: opacity 1s ease-in-out;
+    }
+
+    #menu-toggle i.active {
+        opacity: 0;
+    }
 
 /* Header */
 
@@ -214,22 +224,6 @@ hr.small {
     .call-to-action .btn {
         margin: 10px;
     }
-
-/* Map */
-
-.map {
-    height: 500px;
-}
-
-@media(max-width:768px) {
-    .map {
-        height: 75%;
-    }
-}
-
-.map iframe {
-    pointer-events: none;
-}
 
 /* Footer */
 
