@@ -1,14 +1,23 @@
 // Scripts for Phillip's Portfolio.
 
 /* When the menu-open element in the sidebar container is clicked, the
- * sidebar will open, covering up the menu-open element. */
-$("#menu-toggle").click(function (event) {
+ * sidebar will open, covering up the menu-open element. Also, if any sections
+ * within the sidebar are clicked, the menu will close. */
+$("#menu-toggle, .sidebar-nav li a").click(function (event) {
     event.preventDefault();
+
+    // Changes the images of the toggle button.
     $("#toggle-right").toggleClass("active");
     $("#toggle-left").toggleClass("active");
+
+    // Allows the sidebar to not be transparent.
     $("#sidebar-container").toggleClass("active");
+
+    // Enables the hyperlink elements inside the sidebar.
     $(".sidebar-nav li a").toggleClass("active");
     $(".sidebar-nav li a").toggleClass("disabled");
+
+    // Determines the color of the toggle button.
     $("#menu-toggle").toggleClass("menu-active");
     $("#menu-toggle").toggleClass("menu-inactive");
 });
