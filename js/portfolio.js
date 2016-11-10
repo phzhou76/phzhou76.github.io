@@ -8,6 +8,7 @@ $("#menu-toggle").click(function (event) {
     $("#toggle-left").toggleClass("active");
     $("#sidebar-container").toggleClass("active");
     $(".sidebar-nav li a").toggleClass("active");
+    $(".sidebar-nav li a").toggleClass("disabled");
 });
 
 /* This function will move the user to the clicked section. The function listens to

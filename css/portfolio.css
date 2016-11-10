@@ -63,11 +63,11 @@ hr.small {
     position: fixed;
     left: 0;
     display: block;
-    width: 175px;
+    width: 195px;
     height: 100%;
-    transform: translateX(-110px);
+    transform: translateX(-120px);
     overflow-y: auto;
-	background-color: transparent;
+    background-color: transparent;
     -webkit-transition: all 0.6s ease 0s;
     -moz-transition: all 0.6s ease 0s;
     -ms-transition: all 0.6s ease 0s;
@@ -77,9 +77,8 @@ hr.small {
 
 .sidebar-nav {
     position: absolute;
-    top: 13px;
-	left: 0px;
-    width: 175px;
+    left: 0px;
+    width: 195px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -90,7 +89,12 @@ hr.small {
         line-height: 40px;
     }
 
+        .sidebar-nav li a.disabled {
+            pointer-events: none;
+        }
+
         .sidebar-nav li a {
+            display: block;
             text-decoration: none;
             color: #999;
         }
@@ -98,12 +102,11 @@ hr.small {
             .sidebar-nav li a:hover {
                 text-decoration: none;
                 color: #fff;
-                background: rgba(255,255,255,0.7);
+                background: rgba(255,255,255,0.2);
             }
 
             .sidebar-nav li a:active,
             .sidebar-nav li a:focus {
-                display: block;
                 text-decoration: none;
             }
 
@@ -111,10 +114,11 @@ hr.small {
         height: 55px;
         font-size: 28px;
         line-height: 55px;
-        margin-top: 1px;
+        margin-top: 10px;
     }
 
         .sidebar-nav > .sidebar-brand a {
+            width: 0px;
             color: #ffffff;
         }
 
@@ -123,7 +127,7 @@ hr.small {
             }
 
 #sidebar-container.active {
-    left: 110px;
+    left: 120px;
     width: 195px;
     background-color: rgba(35, 35, 35, 0.95);
     -webkit-transition: all 0.4s ease 0s;
@@ -135,23 +139,24 @@ hr.small {
 
 #menu-toggle {
     position: relative;
-    right: 5px;
+    top: 10px;
+    margin-right: 28px;
     background-color: transparent;
     font-size: 36px;
 }
 
     #menu-toggle i {
         position: absolute;
-        left: 3px;
+        left: 10px;
         -webkit-transition: opacity 0.75s ease-in-out;
         -moz-transition: opacity 0.75s ease-in-out;
         -o-transition: opacity 0.75s ease-in-out;
         transition: opacity 0.75s ease-in-out;
     }
 
-    #menu-toggle i.active {
-        opacity: 0;
-    }
+        #menu-toggle i.active {
+            opacity: 0;
+        }
 
 /* Header */
 
