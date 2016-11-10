@@ -139,15 +139,21 @@ hr.small {
 
 #menu-toggle {
     position: relative;
-    top: 10px;
-    margin-right: 28px;
-    background-color: transparent;
+    top: 5px;
+    left: 15px;
+    margin-right: 18px;
     font-size: 36px;
 }
 
+    #menu-toggle.menu-active {
+        background-color: transparent;
+    }
+
+    #menu-toggle.menu-inactive {
+        background-color: rgba(0,0,0,0.4);
+    }
+
     #menu-toggle i {
-        position: absolute;
-        left: 10px;
         -webkit-transition: opacity 0.75s ease-in-out;
         -moz-transition: opacity 0.75s ease-in-out;
         -o-transition: opacity 0.75s ease-in-out;
@@ -157,6 +163,16 @@ hr.small {
         #menu-toggle i.active {
             opacity: 0;
         }
+
+#toggle-right {
+    position: relative;
+}
+
+#toggle-left {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
 
 /* Header */
 
@@ -237,7 +253,6 @@ footer {
 }
 
 #to-top {
-    display: none;
     position: fixed;
     bottom: 9%;
     right: 1%;
