@@ -7,6 +7,8 @@
     <meta name="description" content="Portfolio">
     <meta name="author" content="Phillip Zhou">
     <title>Phillip's Portfolio of Wonders!</title>
+    <!-- Interceptor for the favicon.ico error. -->
+    <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -34,7 +36,7 @@
                 <a href="#">Menu</a>
             </li>
             <li>
-                <a id="top-sec" href="#top" onclick=$("#menu-close").click();>Home</a>
+                <a id="#top" href="#top" onclick=$("#menu-close").click();>Home</a>
             </li>
             <li>
                 <a href="#about" onclick=$("#menu-close").click();>About</a>
