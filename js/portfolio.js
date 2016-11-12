@@ -25,9 +25,10 @@ $("#menu-toggle, .sidebar-nav li a").click(function (event) {
 /* This function will move the user to the clicked section. The function listens to
  * all <a> elements that have href attrib that has a '#' in it. Leave out any
  * elements that have exactly '#' as href, or any of the other [attrib].*/
-$('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function () {
+$('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function (event) {
     /* Find first '/' symbol in string, replace with ''. */
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+        || location.hostname == this.hostname) {
         var target = $(this.hash);
         // Takes the last element of the hash, creates a new string, tries to find element with that ID.
         target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -42,20 +43,20 @@ $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(fun
 });
 
 // Status on if the to-top button is being shown - true if it is shown.
-var fixedTop = false;
-var fixedBottom = false;
+var FixedTop = false;
+var FixedBottom = false;
 
-var documentBottomLoc = $(document).height() - $(window).height();
+var DocumentBottomLoc = $(document).height() - $(window).height();
 
 /* This function determines, based on how far down the user scrolled, whether or
  * not to show a button that allows the user to move back to the top. */
-$(document).scroll(function () {
+$(document).scroll(function (event) {
     /* To-top button will not show until scroll distance is more than 250 units down. 
      * But, show the to-next button. */
     if ($(this).scrollTop() <= 250) {
         // Disable to-top button if showing.
-        if (fixedTop) {
-            fixedTop = false;
+        if (FixedTop) {
+            FixedTop = false;
             $("#to-top").fadeOut(250, function () {
                 $("#to-top").css({
                     display: "none"
@@ -64,8 +65,8 @@ $(document).scroll(function () {
         }
 
         // Enable to-next button if not showing.
-        if (!fixedBottom) {
-            fixedBottom = true;
+        if (!FixedBottom) {
+            FixedBottom = true;
             $("#to-next").fadeIn(250, function () {
                 $("#to-next").css({
                     display: "block"
@@ -73,11 +74,11 @@ $(document).scroll(function () {
             });
         }
     }
-    /* Middle of the document. */
-    else if ($(this).scrollTop() > 250 && (documentBottomLoc - $(window).scrollTop()) > 250) {
+        /* Middle of the document. */
+    else if ($(this).scrollTop() > 250 && (DocumentBottomLoc - $(window).scrollTop()) > 250) {
         // Enable to-top button if not showing.
-        if (!fixedTop) {
-            fixedTop = true;
+        if (!FixedTop) {
+            FixedTop = true;
             $("#to-top").fadeIn(250, function () {
                 $("#to-top").css({
                     display: "block"
@@ -86,8 +87,8 @@ $(document).scroll(function () {
         }
 
         // Enable to-next button if not showing.
-        if (!fixedBottom) {
-            fixedBottom = true;
+        if (!FixedBottom) {
+            FixedBottom = true;
 
             $("#to-top").animate({
                 bottom: "9%"
@@ -100,11 +101,11 @@ $(document).scroll(function () {
             });
         }
     }
-    /* End of the document. Hide the to-next button. */
+        /* End of the document. Hide the to-next button. */
     else {
         // Enable to-top button if not showing.
-        if (!fixedTop) {
-            fixedTop = true;
+        if (!FixedTop) {
+            FixedTop = true;
             $("#to-top").fadeIn(200, function () {
                 $("#to-top").css({
                     display: "block"
@@ -113,8 +114,8 @@ $(document).scroll(function () {
         }
 
         // Disable the to-next button if showing.
-        if (fixedBottom) {
-            fixedBottom = false;
+        if (FixedBottom) {
+            FixedBottom = false;
             $("#to-next").fadeOut(250, function () {
                 $("#to-next").css({
                     display: "none"
@@ -127,3 +128,11 @@ $(document).scroll(function () {
         }
     }
 });
+
+/* Switches the images when a mouse hovers over the profile image. */
+$(".image-center").mouseover(ChangePicture);
+$(".image-center").mouseout(ChangePicture);
+
+function ChangePicture(event) {
+    $("#switch-image").toggleClass("image-active");
+}

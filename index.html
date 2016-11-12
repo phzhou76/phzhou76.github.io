@@ -24,6 +24,7 @@
     <![endif]-->
 </head>
 <body>
+
     <!-- Navigation Sidebar -->
     <nav id="sidebar-container">
         <ul class="sidebar-nav">
@@ -39,7 +40,10 @@
                 <a href="#top" class="disabled" onclick=$("#menu-close").click();>Home</a>
             </li>
             <li>
-                <a href="#about" class="disabled" onclick=$("#menu-close").click();>About</a>
+                <a href="#about" class="disabled" onclick=$("#menu-close").click();>About Me</a>
+            </li>
+            <li>
+                <a href="#skillset" class="disabled" onclick=$("#menu-close").click();>Skillset</a>
             </li>
             <li>
                 <a href="#portfolio" class="disabled" onclick=$("#menu-close").click();>Portfolio</a>
@@ -49,104 +53,223 @@
             </li>
         </ul>
     </nav>
+
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
             <h1>Phillip Zhou</h1>
             <h3>Software Engineer</h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">About Me</a>
+            <br />
+            <a href="#about" class="btn btn-dark btn-lg">Introduction</a>
         </div>
     </header>
-    <!-- About -->
+
+    <!-- About Me -->
     <section id="about" class="about">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
-                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+            <!-- Title -->
+            <div class="row text-center about-title">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <h2>About Me</h2>
+                    <hr class="small">
                 </div>
             </div>
-            <!-- /.row -->
+            <!-- Profile Images -->
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="image-center text-center">
+                        <img id="profile-image" src="./img/Profile-Picture.jpg" />
+                        <img id="switch-image" src="./img/Profile-Picture-2.jpg" />
+                    </div>
+                </div>
+            </div>
+            <!-- Profile Information -->
+            <div class="row about-text">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <p>Hi, I'm Phillip! Welcome to my profile!</p>
+                    <br />
+                    <p>
+                        I am currently a Computer Science student attending UCSD as part of the class of 2017.
+                        As someone who's a bit of a perfectionist, I have a strong eye for detail and design -
+                        this helps me focus on areas of tasks that could use a bit more polish. As of right now,
+                        I mainly enjoy working on projects that have a visual aspect to them; something that
+                        I can easily see the results of my efforts on. Because of that, I mainly have an interest
+                        in game development, graphics, web development or artificial intelligence. However,
+                        there are a wide range of topics that I have not delved into yet, topics that I am interested
+                        in learning more about, such as databases and networks. In the future, I hope to be able to
+                        develop and build applications that others will look forward to and enjoy using.
+                    </p>
+                </div>
+            </div>
         </div>
-        <!-- /.container -->
     </section>
-    <!-- Services -->
+
+    <!-- Skillset -->
     <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
+    <section id="skillset" class="skillset bg-primary">
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
+                    <h2>Skillset</h2>
                     <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                    <div id="skill-container" class="row">
+                        <!-- First row of skills. -->
+                        <div class="row">
+                            <!-- Skills start here. -->
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-gears fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>C++</strong>
+                                    </h2>
+                                    <p>Expert</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-coffee fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>Java</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-file-text-o fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>C#</strong>
+                                    </h2>
+                                    <p>Prior Experience</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                        <!-- Second row of skills. -->
+                        <div class="row">
+                            <!-- Skills start here. -->
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-calculator fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>Python</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-code-fork fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>Git</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-code fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>HTML</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-sort-amount-asc fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>CSS</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                        <!-- Third row of skills. -->
+                        <div class="row">
+                            <!-- Skills start here. -->
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-sliders fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>Javascript</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                                </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-pencil-square-o fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>Blender</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-picture-o fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>Maya</strong>
+                                    </h2>
+                                    <p>Proficient</p>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                                <div class="skill-item">
+                                    <span class="fa-stack fa-4x">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-terminal fa-stack-1x skill-icon"></i>
+                                    </span>
+                                    <h2>
+                                        <strong>OpenGL</strong>
+                                    </h2>
+                                    <p>Proficientt</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.row (nested) -->
                 </div>
-                <!-- /.col-lg-10 -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container -->
     </section>
+
     <!-- Callout -->
     <aside class="callout">
         <div class="text-vertical-center">
             <h1>Vertically Centered Text</h1>
         </div>
     </aside>
+
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -193,6 +316,7 @@
         </div>
         <!-- /.container -->
     </section>
+
     <!-- Call to Action -->
     <aside class="call-to-action bg-primary">
         <div class="container">
@@ -205,6 +329,7 @@
             </div>
         </div>
     </aside>
+
     <!-- Footer -->
     <footer>
         <div class="container">
