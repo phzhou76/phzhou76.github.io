@@ -54,9 +54,13 @@ body {
 
 /* Custom Horizontal Rule */
 
-hr.small {
-    max-width: 100px;
+hr {
+    border-top: 2px solid #ffffff;
 }
+
+    hr.small {
+        max-width: 100px;
+    }
 
 /* Side Menu */
 
@@ -193,7 +197,7 @@ hr.small {
 /* About */
 
 .about {
-    background-color: #ffffff;
+    background-color: #3673bc;
     padding-top: 20px;
 }
 
@@ -214,10 +218,11 @@ hr.small {
             -moz-border-radius: 100%;
             -ms-border-radius: 100%;
             border-radius: 100%;
-            border: 20px solid #146cd1;
+            border: 20px solid #39cec2;
         }
 
     .about .about-text {
+        color: #ffffff;
         padding-top: 280px;
         text-align: center;
         font-size: 20px;
@@ -225,11 +230,11 @@ hr.small {
     }
 
     .about .about-title {
-        color: #146cd1;
+        color: #ffffff;
     }
 
         .about .about-title hr {
-            border-top: 1px solid #146cd1;
+            border-top: 2px solid #ffffff;
             width: 125px;
         }
 
@@ -260,7 +265,7 @@ hr.small {
 }
 
 .skillset {
-    background-color: #1161ad;
+    background-color: #3673bc;
     padding-top: 20px;
     padding-bottom: 40px;
 }
@@ -274,7 +279,7 @@ hr.small {
 }
 
 .toggle-skills {
-    background-color: #07b7ba;
+    background-color: #39cec2;
     color: #ffffff;
     display: block;
     padding-top: 1px;
@@ -283,11 +288,13 @@ hr.small {
 }
 
 #pl-hr {
+    border-top: 2px solid #ffffff;
     width: 260px;
     margin-top: -5px;
 }
 
 #tech-hr {
+    border-top: 2px solid #ffffff;
     width: 140px;
     margin-top: -5px;
 }
@@ -397,22 +404,18 @@ hr.small {
 }
 
 /* Portfolio */
-.skillset {
-    background-color: #1161ad;
+.portfolio {
+    background-color: #3673bc;
     padding-top: 20px;
     padding-bottom: 40px;
 }
 
-.portfolio {
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
     .portfolio h2 {
-        color: #146cd1;
+        color: #ffffff;
     }
 
     .portfolio hr {
-        border-top: 1px solid #146cd1;
+        border-top: 2px solid #ffffff;
         width: 125px;
     }
 
@@ -429,16 +432,29 @@ hr.small {
     }
 
 /* Contact */
-.skillset {
-    background-color: #1161ad;
+.contact {
+    background-color: #3673bc;
     padding-top: 20px;
     padding-bottom: 40px;
 }
 
-/* Footer */
+    .contact li {
+        font-size: 20px;
+        text-align: center;
+    }
 
-footer {
-    padding: 100px 0;
+        .contact li i {
+            margin-top: 25px;
+            top: 500px;
+        }
+
+    .contact a {
+        color: #ffffff;
+    }
+
+#contact-bottom {
+    width: 300px;
+    border-top: 2px solid #ffffff;
 }
 
 #to-top {
