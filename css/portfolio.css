@@ -197,7 +197,7 @@ hr {
 /* About */
 
 .about {
-    background-color: #3673bc;
+    background-color: #1f405e;
     padding-top: 20px;
 }
 
@@ -218,7 +218,7 @@ hr {
             -moz-border-radius: 100%;
             -ms-border-radius: 100%;
             border-radius: 100%;
-            border: 20px solid #39cec2;
+            border: 20px solid #144593;
         }
 
     .about .about-text {
@@ -265,7 +265,7 @@ hr {
 }
 
 .skillset {
-    background-color: #3673bc;
+    background-color: #1f405e;
     padding-top: 20px;
     padding-bottom: 40px;
 }
@@ -279,7 +279,7 @@ hr {
 }
 
 .toggle-skills {
-    background-color: #39cec2;
+    background-color: #144593;
     color: #ffffff;
     display: block;
     padding-top: 1px;
@@ -405,7 +405,7 @@ hr {
 
 /* Portfolio */
 .portfolio {
-    background-color: #3673bc;
+    background-color: #1f405e;
     padding-top: 20px;
     padding-bottom: 40px;
 }
@@ -433,7 +433,7 @@ hr {
 
 /* Contact */
 .contact {
-    background-color: #3673bc;
+    background-color: #1f405e;
     padding-top: 20px;
     padding-bottom: 40px;
 }
