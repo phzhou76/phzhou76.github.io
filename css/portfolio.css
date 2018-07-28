@@ -1,472 +1,206 @@
-html,
-body {
-    width: 100%;
-    height: 100%;
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 body {
-    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Source Sans Pro", arial, sans-serif;
 }
 
-/* Front-page Text */
-
-.text-vertical-center {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    color: #ffffff;
-}
-
-    .text-vertical-center h1 {
-        margin: 0;
-        padding: 0;
-        font-size: 4.5em;
-        font-weight: 700;
-    }
-
-/* Custom Button Styles */
+/* Custom button styles. */
 
 .btn-dark {
-    border-radius: 0;
-    color: #fff;
-    background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-    .btn-dark:hover,
-    .btn-dark:focus,
-    .btn-dark:active {
-        color: #fff;
-        background-color: rgba(0,0,0,0.7);
-    }
-
-.btn-light {
-    border-radius: 0;
-    color: #333;
-    background-color: rgb(255,255,255);
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-    .btn-light:hover,
-    .btn-light:focus,
-    .btn-light:active {
-        color: #333;
-        background-color: rgba(255,255,255,0.8);
-    }
+/* SECTION: Sidebar CSS. */
 
-/* Custom Horizontal Rule */
-
-hr {
-    border-top: 2px solid #ffffff;
-}
-
-    hr.small {
-        max-width: 100px;
-    }
-
-/* Side Menu */
+/* Contains the entire sidebar. */
 
 #sidebar-container {
-    z-index: 1000;
-    position: fixed;
-    left: 0;
-    display: block;
-    width: 195px;
-    height: 100%;
-    transform: translateX(-120px);
-    overflow-y: auto;
-    background-color: transparent;
-    -webkit-transition: all 0.6s ease 0s;
-    -moz-transition: all 0.6s ease 0s;
-    -ms-transition: all 0.6s ease 0s;
-    -o-transition: all 0.6s ease 0s;
-    transition: all 0.6s ease 0s;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  display: block;
+  width: 250px;
+  height: 100%;
+  transform: translateX(-120px);
+  overflow-y: auto;
+  background-color: transparent;
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  transition: all 0.75s ease;
 }
+
+/* Contains the portion of the sidebar that displays text. */
 
 .sidebar-nav {
-    position: absolute;
-    left: 0px;
-    width: 195px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  position: absolute;
+  left: 0px;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-    .sidebar-nav li {
-        text-indent: 20px;
-        line-height: 40px;
-    }
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
 
-        .sidebar-nav li a.disabled {
-            pointer-events: none;
-        }
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  -webkit-user-select: none;
+  color: #999;
+}
 
-        .sidebar-nav li a {
-            display: block;
-            text-decoration: none;
-            color: #999;
-        }
+.sidebar-nav li a.disabled {
+  pointer-events: none;
+}
 
-            .sidebar-nav li a:hover {
-                text-decoration: none;
-                color: #fff;
-                background: rgba(255,255,255,0.2);
-            }
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
 
-            .sidebar-nav li a:active,
-            .sidebar-nav li a:focus {
-                text-decoration: none;
-            }
+/* Customizes the Menu text in the sidebar. */
 
-    .sidebar-nav > .sidebar-brand {
-        height: 55px;
-        font-size: 28px;
-        line-height: 55px;
-        margin-top: 10px;
-    }
+.sidebar-nav>.sidebar-brand {
+  height: 55px;
+  font-size: 28px;
+  line-height: 55px;
+  margin-top: 10px;
+}
 
-        .sidebar-nav > .sidebar-brand a {
-            width: 0px;
-            color: #ffffff;
-        }
+.sidebar-nav>.sidebar-brand a {
+  width: 0px;
+  color: #ffffff;
+}
 
-            .sidebar-nav > .sidebar-brand a:hover {
-                background: none;
-            }
+/* Endpoint after the sidebar has been activated. */
 
 #sidebar-container.active {
-    left: 120px;
-    width: 195px;
-    background-color: rgba(35, 35, 35, 0.95);
-    -webkit-transition: all 0.4s ease 0s;
-    -moz-transition: all 0.4s ease 0s;
-    -ms-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
+  left: 120px;
+  background-color: rgba(35, 35, 35, 0.55);
 }
+
+/* Customizes the toggle button for the sidebar. */
 
 #menu-toggle {
-    position: relative;
-    top: 7px;
-    left: 10px;
-    margin-right: 18px;
-    font-size: 30px;
+  position: relative;
+  top: 7px;
+  left: 10px;
+  margin-right: 18px;
+  font-size: 30px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-    #menu-toggle.menu-active {
-        background-color: transparent;
-    }
+/* Toggle button's background should be transparent while the sidebar is
+ * active.
+ */
 
-    #menu-toggle.menu-inactive {
-        background-color: rgba(0,0,0,0.4);
-    }
-
-    #menu-toggle i {
-        -webkit-transition: opacity 0.75s ease-in-out;
-        -moz-transition: opacity 0.75s ease-in-out;
-        -o-transition: opacity 0.75s ease-in-out;
-        transition: opacity 0.75s ease-in-out;
-    }
-
-        #menu-toggle i.active {
-            opacity: 0;
-        }
-
-#toggle-right {
-    position: relative;
+#menu-toggle.menu-active {
+  background-color: transparent;
 }
 
-#toggle-left {
-    position: absolute;
-    top: 15px;
-    right: 15px;
+/* Toggle button's background should be opaque while the sidebar is closed. */
+
+#menu-toggle.menu-inactive {
+  left: -45px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-/* Header */
+/* SECTION: Header section. */
 
 .header {
-    display: table;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: url(../img/Background-Starry-Sky.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
+  display: table;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../img/Background-Starry-Sky.jpg) no-repeat center center scroll;
+  background-repeat: repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
 }
 
-/* About */
-
-.about {
-    background-color: #1f405e;
-    padding-top: 20px;
+.header-text {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 400px;
+  color: #ffffff;
+  opacity: 0;
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 2s ease;
 }
 
-    .about .image-center {
-        z-index: 30;
-        position: absolute;
-        top: 20px;
-        bottom: 0;
-        margin-bottom: -100px;
-        left: 50%;
-        margin-left: -110px;
-    }
+/* When the header's text is set to active, the text will become visible and
+ * move 200px to the left.
+ */
 
-        .about .image-center img {
-            width: 220px;
-            height: 220px;
-            -webkit-border-radius: 100%;
-            -moz-border-radius: 100%;
-            -ms-border-radius: 100%;
-            border-radius: 100%;
-            border: 20px solid #144593;
-        }
-
-    .about .about-text {
-        color: #ffffff;
-        padding-top: 280px;
-        text-align: center;
-        font-size: 20px;
-        padding-bottom: 40px;
-    }
-
-    .about .about-title {
-        color: #ffffff;
-    }
-
-        .about .about-title hr {
-            border-top: 2px solid #ffffff;
-            width: 125px;
-        }
-
-#profile-image {
-    position: relative;
+.header-text.active {
+  opacity: 1;
+  padding-left: 200px;
 }
 
-#switch-image {
-    opacity: 0.0;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    -webkit-transition: opacity 0.75s ease-in-out;
-    -moz-transition: opacity 0.75s ease-in-out;
-    -o-transition: opacity 0.75s ease-in-out;
-    transition: opacity 0.75s ease-in-out;
+.header-text h1 {
+  text-transform: uppercase;
+  font-size: 60px;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-    #switch-image.image-active {
-        opacity: 1.0;
-    }
+/* SECTION: Contact */
 
-/* Skillset */
-
-#skill-container {
-    margin-top: 50px;
-}
-
-.skillset {
-    background-color: #1f405e;
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-
-.skill-icon {
-    color: #43a2ef;
-}
-
-.skill-item {
-    margin-bottom: 30px;
-}
-
-.toggle-skills {
-    background-color: #144593;
-    color: #ffffff;
-    display: block;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    margin-bottom: 30px;
-}
-
-#pl-hr {
-    border-top: 2px solid #ffffff;
-    width: 260px;
-    margin-top: -5px;
-}
-
-#tech-hr {
-    border-top: 2px solid #ffffff;
-    width: 140px;
-    margin-top: -5px;
-}
-
-/* Callout */
-
-#callout-A.callout {
-    display: table;
-    width: 100%;
-    height: 400px;
-    color: #fff;
-    background: url(../img/Callout-A.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-#callout-B.callout {
-    opacity: 0;
-    display: table;
-    width: 100%;
-    height: 400px;
-    color: #fff;
-    margin-top: -400px;
-    background: url(../img/Callout-B.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    -webkit-transition: opacity 1.5s ease-in-out;
-    -moz-transition: opacity 1.5s ease-in-out;
-    -o-transition: opacity 1.5s ease-in-out;
-    transition: opacity 1.5s ease-in-out;
-}
-
-#callout-B.callout-active {
-    opacity: 1.0;
-}
-
-#callout-C.callout {
-    display: table;
-    width: 100%;
-    height: 400px;
-    color: #fff;
-    background: url(../img/Callout-C.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-#callout-D.callout {
-    opacity: 0;
-    display: table;
-    width: 100%;
-    height: 400px;
-    color: #fff;
-    margin-top: -400px;
-    background: url(../img/Callout-D.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    -webkit-transition: opacity 1.5s ease-in-out;
-    -moz-transition: opacity 1.5s ease-in-out;
-    -o-transition: opacity 1.5s ease-in-out;
-    transition: opacity 1.5s ease-in-out;
-}
-
-#callout-D.callout-active {
-    opacity: 1.0;
-}
-
-#callout-E.callout {
-    display: table;
-    width: 100%;
-    height: 400px;
-    color: #fff;
-    background: url(../img/Callout-E.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-}
-
-#callout-F.callout {
-    opacity: 0;
-    display: table;
-    width: 100%;
-    height: 400px;
-    color: #fff;
-    margin-top: -400px;
-    background: url(../img/Callout-F.jpg) no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-    -webkit-transition: opacity 1.5s ease-in-out;
-    -moz-transition: opacity 1.5s ease-in-out;
-    -o-transition: opacity 1.5s ease-in-out;
-    transition: opacity 1.5s ease-in-out;
-}
-
-#callout-F.callout-active {
-    opacity: 1.0;
-}
-
-/* Portfolio */
-.portfolio {
-    background-color: #1f405e;
-    padding-top: 20px;
-    padding-bottom: 40px;
-}
-
-    .portfolio h2 {
-        color: #ffffff;
-    }
-
-    .portfolio hr {
-        border-top: 2px solid #ffffff;
-        width: 125px;
-    }
-
-.portfolio-item {
-    margin-bottom: 30px;
-}
-
-.img-portfolio {
-    margin: 0 auto;
-}
-
-    .img-portfolio:hover {
-        opacity: 0.8;
-    }
-
-/* Contact */
 .contact {
-    background-color: #1f405e;
-    padding-top: 20px;
-    padding-bottom: 40px;
+  background-color: #18447f;
+  padding-top: 10px;
+  padding-bottom: 20px;
 }
 
-    .contact li {
-        font-size: 20px;
-        text-align: center;
-    }
-
-        .contact li i {
-            margin-top: 25px;
-            top: 500px;
-        }
-
-    .contact a {
-        color: #ffffff;
-    }
-
-#contact-bottom {
-    width: 300px;
-    border-top: 2px solid #ffffff;
+.container {
+  padding: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
-#to-top {
-    position: fixed;
-    bottom: 9%;
-    right: 1%;
-    font-size: 20px;
+.container h1 {
+  font-size: 35px;
+  font-weight: 550;
+  margin-left: 10%;
 }
 
-#to-next {
-    position: fixed;
-    bottom: 2%;
-    right: 1%;
-    font-size: 20px;
+.contact li i {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-left: 30%;
+  top: 500px;
+}
+
+.contact li h3 {
+  font-size: 18px;
+  text-align: left;
+  margin-left: -65%;
+}
+
+.contact a {
+  color: #ffffff;
 }

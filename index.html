@@ -1,400 +1,133 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Portfolio">
-    <meta name="author" content="Phillip Zhou">
-    <title>Phillip's Portfolio of Wonders!</title>
-    <!-- Interceptor for the favicon.ico error. -->
-    <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/portfolio.css" rel="stylesheet">
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio">
+  <meta name="author" content="Phillip Zhou">
+  <title>Portfolio</title>
+
+  <!-- Interceptor for the favicon.ico error. -->
+  <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
+
+  <!-- Image for link icon. -->
+  <link href="img/link_icon.png" rel="icon" />
+
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/portfolio.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
+
 <body>
 
-    <!-- Navigation Sidebar -->
-    <nav id="sidebar-container">
-        <ul class="sidebar-nav">
-            <!-- Toggle button for the sidebar. -->
-            <a id="menu-toggle" href="#" class="btn btn-dark btn-lg pull-right menu-inactive">
-                <i id="toggle-right" class="toggle-right fa fa-toggle-right"></i>
-                <i id="toggle-left" class="active toggle-left fa fa-toggle-left"></i>
-            </a>
-            <li class="sidebar-brand">
-                <a href="#">Menu</a>
-            </li>
-            <li>
-                <a href="#top" class="disabled">Home</a>
-            </li>
-            <li>
-                <a href="#about" class="disabled">About Me</a>
-            </li>
-            <li>
-                <a href="#skillset" class="disabled">Skillset</a>
-            </li>
-            <li>
-                <a href="#portfolio" class="disabled">Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" class="disabled">Contact</a>
-            </li>
-        </ul>
-    </nav>
+  <!-- Navigation Sidebar -->
+  <nav id="sidebar-container">
+    <ul class="sidebar-nav">
 
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Phillip Zhou</h1>
-            <br />
-            <h3>Software Engineer</h3>
-        </div>
-    </header>
+      <!-- Toggle button for the sidebar. -->
+      <a id="menu-toggle" href="#" class="btn btn-dark btn-lg pull-right menu-inactive">
+        <i id="menu-icon" class="fa fa-toggle-right"></i>
+      </a>
 
-    <!-- About Me -->
-    <section id="about" class="about">
-        <div class="container">
-            <!-- Title -->
-            <div class="row text-center about-title">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2>About Me</h2>
-                    <hr>
-                </div>
-            </div>
-            <!-- Profile Images -->
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div class="image-center text-center">
-                        <img id="profile-image" src="./img/Profile-Picture.jpg" />
-                        <img id="switch-image" src="./img/Profile-Picture-2.jpg" />
-                    </div>
-                </div>
-            </div>
-            <!-- Profile Information -->
-            <div class="row about-text">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <p>Hi, I'm Phillip! Welcome to my profile!</p>
-                    <br />
-                    <p>
-                        I am currently a 4th year Computer Science student attending UCSD. As of right now, I 
-                        have an interest in topics involving graphics, web development, or artificial intelligence.
-                        Using the material that I've learned, I hope to develop and build applications that others
-                        will look forward to and enjoy using.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <li class="sidebar-brand">
+        <a href="#">Menu</a>
+      </li>
 
-    <!-- Callouts -->
-    <div class="callout-div">
-        <aside id="callout-A" class="callout"></aside>
-        <aside id="callout-B" class="callout callout-bot"></aside>
+      <!-- List of all menu items. -->
+      <li>
+        <a href="#top" class="disabled">Home</a>
+      </li>
+      <li>
+        <a href="#portfolio" class="disabled">Portfolio</a>
+      </li>
+      <li>
+        <a href="#blog" class="disabled">Blog Entries</a>
+      </li>
+      <li>
+        <a href="#contact" class="disabled">Contact Info</a>
+      </li>
+
+    </ul>
+  </nav>
+  <!-- End of Navigation Sidebar. -->
+
+  <!-- Header section. -->
+  <header id="top" data-stellar-background-ratio="0.5" class="header">
+    <div class="header-text">
+      <h1>Phillip Zhou</h1>
+      <h3>Software Engineer</h3>
     </div>
+  </header>
+  <!-- End of Header section. -->
 
-    <!-- Skillset -->
-    <section id="skillset" class="skillset bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <!-- Title -->
-                    <div class="row text-center skill-title">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h2>Skillset</h2>
-                            <hr class="small">
-                        </div>
-                    </div>
-                    <div id="skill-container" class="row">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div id="toggle-pl" class="toggle-skills">
-                                    <h3>Programming Languages</h3>
-                                    <hr id="pl-hr" />
-                                </div>
-                            </div>
-                        </div>
-                        <div id="pl-rows" class="row">
-                            <!-- First row of skills. -->
-                            <div class="row">
-                                <!-- Skills start here. -->
-                                <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-gears fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>C++</strong>
-                                        </h2>
-                                        <p>Proficient</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-coffee fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>Java</strong>
-                                        </h2>
-                                        <p>Competent</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-file-text-o fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>C#</strong>
-                                        </h2>
-                                        <p>Prior Experience</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Second row of skills. -->
-                            <div class="row">
-                                <!-- Skills start here. -->
-                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-calculator fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>Python</strong>
-                                        </h2>
-                                        <p>Competent</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-sliders fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>Javascript</strong>
-                                        </h2>
-                                        <p>Competent</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-code fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>HTML</strong>
-                                        </h2>
-                                        <p>Competent</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                    <div class="skill-item">
-                                        <span class="fa-stack fa-4x">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-sort-amount-asc fa-stack-1x skill-icon"></i>
-                                        </span>
-                                        <h2>
-                                            <strong>CSS</strong>
-                                        </h2>
-                                        <p>Competent</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <div id="toggle-tech" class="toggle-skills">
-                                    <h3>Technologies</h3>
-                                    <hr id="tech-hr" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Third row of skills. -->
-                        <div id="tech-row" class="row">
-                            <!-- Skills start here. -->
-                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                <div class="skill-item">
-                                    <span class="fa-stack fa-4x">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-code-fork fa-stack-1x skill-icon"></i>
-                                    </span>
-                                    <h2>
-                                        <strong>Git</strong>
-                                    </h2>
-                                    <p>Proficient</p>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                <div class="skill-item">
-                                    <span class="fa-stack fa-4x">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-pencil-square-o fa-stack-1x skill-icon"></i>
-                                    </span>
-                                    <h2>
-                                        <strong>Blender</strong>
-                                    </h2>
-                                    <p>Competent</p>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                <div class="skill-item">
-                                    <span class="fa-stack fa-4x">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-picture-o fa-stack-1x skill-icon"></i>
-                                    </span>
-                                    <h2>
-                                        <strong>Maya</strong>
-                                    </h2>
-                                    <p>Competent</p>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
-                                <div class="skill-item">
-                                    <span class="fa-stack fa-4x">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-terminal fa-stack-1x skill-icon"></i>
-                                    </span>
-                                    <h2>
-                                        <strong>OpenGL</strong>
-                                    </h2>
-                                    <p>Competent</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <!-- Portfolio section.-->
+  <section id="portfolio" class="portfolio">
+
+  </section>
+  <!-- End of Portfolio section. -->
+
+  <!-- Blog section.-->
+  <section id="blog" class="blog">
+
+  </section>
+  <!-- End of Blog section. -->
+
+  <!-- Contact section. -->
+  <footer id="contact" class="contact bg-primary">
+    <div class="container">
+      <div class="row mb-5">
+        <h1>Contact Info</h1>
+
+        <!-- Icons column. -->
+        <div id="icons" class="col-md-4">
+          <ul class="list-unstyled">
+            <li><i class="fa fa-phone fa-2x"></i></li>
+            <li><i class="fa fa-envelope-o fa-2x"></i></li>
+            <li><i class="fa fa-linkedin-square fa-2x"></i></li>
+          </ul>
         </div>
-    </section>
 
-    <!-- Callouts -->
-    <div class="callout-div">
-        <aside id="callout-C" class="callout"></aside>
-        <aside id="callout-D" class="callout callout-bot"></aside>
+        <!-- Info column. -->
+        <div id="info" class="col-md-4">
+          <ul class="list-unstyled">
+            <li><h3>(925) 719-9407</h3></li>
+            <li><h3><a id="email" href="mailto:pzhou53@gmail.com">pzhou53@gmail.com</a></h3></li>
+            <li><h3><a id="linked-in" href="https://www.linkedin.com/in/phzhou">LinkedIn</a></h3></li>
+          </ul>
+        </div>
+      </div>
     </div>
+  </footer>
+  <!-- End of Contact section. -->
 
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Portfolio</h2>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
+  <!-- jQuery. -->
+  <script src="js/jquery.js" type="text/javascript"></script>
 
-    <!-- Callouts -->
-    <div class="callout-div">
-        <aside id="callout-E" class="callout"></aside>
-        <aside id="callout-F" class="callout callout-bot"></aside>
-    </div>
+  <!-- Bootstrap Core JavaScript. -->
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-    <!-- Contact -->
-    <section id="contact" class="contact bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <h2>Contact</h2>
-                    <hr class="small" />
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <ul class="list-unstyled">
-                        <li>
-                            <i class="fa fa-phone fa-2x"></i>
-                            <h3>(925) 719-9407</h3>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope-o fa-2x"></i>
-                            <h3><a id="email" href="mailto:pzhou53@gmail.com">pzhou53@gmail.com</a></h3>
-                        </li>
-                        <li>
-                            <i class="fa fa-linkedin-square fa-2x"></i>
-                            <h3><a id="linked-in" href="https://www.linkedin.com/in/phillip-zhou-a1016bb5">LinkedIn</a></h3>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <br />
-            <hr id="contact-bottom" />
-        </div>
-    </section>
+  <!-- Stellar JavaScript. -->
+  <script src="js/jquery.stellar.min.js" type="text/javascript"></script>
 
-    <!-- Footer -->
-    <footer>
-        <a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>
-        <a id="to-next" href="#next" class="btn btn-dark btn-lg"><i class="fa fa-chevron-down fa-fw fa-1x"></i></a>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js" type="text/javascript"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!-- Javascript functions for the Portfolio. -->
-    <script src="js/portfolio.js" type="text/javascript"></script>
-
-    <!-- Scripts required to animate elements (script.aculio.us). Note: Including these scripts will invalidate
-    functions like toggleClass, click, etc. Need to resolve conflict. -->
-    <script src="js/prototype.js" type="text/javascript"></script>
-    <script src="js/scriptaculous.js" type="text/javascript"></script>
+  <!-- Javascript functions for the Portfolio. -->
+  <script src="js/portfolio.js" type="text/javascript"></script>
 
 </body>
+
 </html>
