@@ -177,7 +177,7 @@ body {
 }
 
 .portfolio {
-  background: url(../img/Callout-A.jpg) center center scroll;
+  background: url(../img/Background-A.jpg) center center scroll;
   background-attachment: fixed;
   background-repeat: repeat;
   background-size: cover;
@@ -219,7 +219,6 @@ body {
 }
 
 .portfolio h2 {
-  text-transform: uppercase;
   font-size: 26px;
   font-weight: 600;
   color: #ffffff;
@@ -286,7 +285,7 @@ body {
 /* SECTION: Contact section. */
 
 .contact {
-  background: url(../img/Callout-A.jpg) center center scroll;
+  background: url(../img/Background-A.jpg) center center scroll;
   background-attachment: fixed;
   background-repeat: repeat;
   background-size: cover;
