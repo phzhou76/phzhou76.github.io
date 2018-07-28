@@ -1,0 +1,224 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: "Source Sans Pro", arial, sans-serif;
+}
+
+/* Custom button styles. */
+
+.btn-dark {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* SECTION: Sidebar CSS. */
+
+/* Contains the entire sidebar. */
+
+#sidebar-container {
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  display: block;
+  width: 250px;
+  height: 100%;
+  transform: translateX(-120px);
+  overflow-y: auto;
+  background-color: transparent;
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  transition: all 0.75s ease;
+}
+
+/* Contains the portion of the sidebar that displays text. */
+
+.sidebar-nav {
+  position: absolute;
+  left: 0px;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  -webkit-user-select: none;
+  color: #999;
+}
+
+.sidebar-nav li a.disabled {
+  pointer-events: none;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Customizes the Menu text in the sidebar. */
+
+.sidebar-nav>.sidebar-brand {
+  height: 55px;
+  font-size: 28px;
+  line-height: 55px;
+  margin-top: 10px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  width: 0px;
+  color: #ffffff;
+}
+
+/* Endpoint after the sidebar has been activated. */
+
+#sidebar-container.active {
+  left: 120px;
+  background-color: rgba(35, 35, 35, 0.55);
+}
+
+/* Customizes the toggle button for the sidebar. */
+
+#menu-toggle {
+  position: relative;
+  top: 7px;
+  left: 10px;
+  margin-right: 18px;
+  font-size: 30px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Toggle button's background should be transparent while the sidebar is
+ * active.
+ */
+
+#menu-toggle.menu-active {
+  background-color: transparent;
+}
+
+/* Toggle button's background should be opaque while the sidebar is closed. */
+
+#menu-toggle.menu-inactive {
+  left: -45px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* SECTION: Header section. */
+
+.header {
+  display: table;
+  position: relative;
+  width: 100%;
+  height: 45%;
+  /* Linear-gradient creates darker layer over image background. */
+  background: linear-gradient( rgba(20, 20, 20, .4), rgba(20, 20, 20, .2)), url(../img/blog-header.jpg) center center scroll;
+  background-repeat: repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.header-text {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 150px;
+  color: #ffffff;
+  opacity: 0;
+  -webkit-transition: all 2s ease;
+  -moz-transition: all 2s ease;
+  -ms-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 2s ease;
+}
+
+/* When the header's text is set to active, the text will become visible and
+ * move 200px to the left.
+ */
+
+.header-text.active {
+  opacity: 1;
+  padding-top: 0px;
+}
+
+.header-text h1 {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.header-text h3 {
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  color: #dbdbdb;
+}
+
+/* SECTION: Contact section. */
+
+.container {
+  padding-left: 0px;
+  margin-left: 0px;
+  width: 100%;
+}
+
+.contact {
+  background: url(../img/parallax-background.jpg) center center scroll;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.contact h1 {
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 10%;
+  color: #ffffff;
+}
+
+.contact li i {
+  font-size: 16px;
+  margin-top: 19px;
+  margin-left: 30%;
+  top: 500px;
+  color: #e0e0e0;
+}
+
+.contact li h3 {
+  font-size: 16px;
+  text-align: left;
+  margin-left: -65%;
+  color: #bababa;
+}
+
+.contact a {
+  color: #bababa;
+}

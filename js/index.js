@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 
   /* Initialization of Stellar Javascript for parallax elements. */
   $(window).stellar({
-    responsive: true,
+    responsive: false,
     horizontalScrolling: false
   });
 
@@ -17,6 +17,10 @@ jQuery(document).ready(function($) {
    * Toggles the elements of the navigation bar to be active or inactive.
    */
   function menuToggle(event) {
+    /* This prevents default behavior of whatever this event targets. I.e. if this
+     * was applied to a hyperlink, then the hyperlink would not have its redirect
+     * functionality.
+     */
     event.preventDefault();
 
     /* Change the image of the toggle butotn. */

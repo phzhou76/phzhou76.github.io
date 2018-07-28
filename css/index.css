@@ -130,7 +130,10 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url(../img/Background-Starry-Sky.jpg) center center scroll;
+  /* For some reason, adding linear-gradient to the background for the header fixed
+   * that issue with there being a gap at the bottom.
+   */
+  background: linear-gradient( rgba(20, 20, 20, 0), rgba(20, 20, 20, .1)), url(../img/index-header.jpg) center center scroll;
   background-repeat: repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -177,7 +180,7 @@ body {
 }
 
 .portfolio {
-  background: url(../img/Background-A.jpg) center center scroll;
+  background: url(../img/parallax-background.jpg) center center scroll;
   background-attachment: fixed;
   background-repeat: repeat;
   background-size: cover;
@@ -285,7 +288,7 @@ body {
 /* SECTION: Contact section. */
 
 .contact {
-  background: url(../img/Background-A.jpg) center center scroll;
+  background: url(../img/parallax-background.jpg) center center scroll;
   background-attachment: fixed;
   background-repeat: repeat;
   background-size: cover;
