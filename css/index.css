@@ -201,7 +201,7 @@ body {
 }
 
 .portfolio a {
-  display: block;
+  display: inline-block;
   text-decoration: none;
 }
 
@@ -232,9 +232,55 @@ body {
 /* SECTION: Blog section. */
 
 .blog {
-  background-color: #ffffff;
+  background-color: #fcfdff;
   padding-top: 10px;
   padding-bottom: 20px;
+}
+
+.blog .row {
+  margin-left: 10%;
+}
+
+.blog h1 {
+  font-size: 36px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.blog .month {
+  font-size: 28px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.blog a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.blog a:hover {
+  opacity: 0.85;
+}
+
+.blog a:hover h2 {
+  color: #2b65d8;
+}
+
+.blog img {
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.blog h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: #104dc9;
+}
+
+.blog p {
+  color: #1042a8;
 }
 
 /* SECTION: Contact section. */
