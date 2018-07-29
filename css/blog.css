@@ -208,11 +208,15 @@ body {
 .blog-contents pre {
   white-space: pre-wrap;
   display: block;
-  border: 1px solid #4ca7f7;
   border-left: 10px solid #4ca7f7;
   background: #f9f9f9;
   padding-top: 25px;
   font-size: 13px;
+}
+
+.blog-contents code {
+  background: #4ca7f7;
+  color: #ffffff;
 }
 
 /* SECTION: Contact section. */

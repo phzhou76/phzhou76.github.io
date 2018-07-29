@@ -37,6 +37,14 @@ jQuery(document).ready(function($) {
   /* Call menuToggle if menu-toggle is clicked. */
   $("#menu-toggle, .sidebar-nav li a").click(menuToggle);
 
+  /* Disable default behavior of the menuToggle button. */
+  $("#menu-toggle").click(
+    function(event) {
+      event.preventDefault();
+      return false;
+    }
+  );
+
   /* Initializing calls. */
   $(".header-text").toggleClass("active");
 });
