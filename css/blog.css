@@ -19,6 +19,12 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+.container {
+  padding-left: 0px;
+  margin-left: 0px;
+  width: 100%;
+}
+
 /* SECTION: Sidebar CSS. */
 
 /* Contains the entire sidebar. */
@@ -146,15 +152,15 @@ body {
   padding-top: 150px;
   color: #ffffff;
   opacity: 0;
-  -webkit-transition: all 2s ease;
-  -moz-transition: all 2s ease;
-  -ms-transition: all 2s ease;
-  -o-transition: all 2s ease;
-  transition: all 2s ease;
+  -webkit-transition: all 1.5s ease;
+  -moz-transition: all 1.5s ease;
+  -ms-transition: all 1.5s ease;
+  -o-transition: all 1.5s ease;
+  transition: all 1.5s ease;
 }
 
 /* When the header's text is set to active, the text will become visible and
- * move 200px to the left.
+ * move 150px up.
  */
 
 .header-text.active {
@@ -171,18 +177,49 @@ body {
 
 .header-text h3 {
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   color: #dbdbdb;
 }
 
-/* SECTION: Contact section. */
+/* SECTION: Blog contents section. */
 
-.container {
-  padding-left: 0px;
-  margin-left: 0px;
-  width: 100%;
+.blog-contents .container {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 100px;
+  padding-bottom: 150px;
 }
+
+.blog-contents .introduction {
+  color: #878787;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 40px;
+}
+
+.blog-contents p {
+  color: #444444;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 30px;
+}
+
+.blog-contents pre {
+  white-space: pre-wrap;
+  display: block;
+  border: 2px solid #4ca7f7;
+  border-left: 10px solid #4ca7f7;
+  background: #f9f9f9;
+  padding-top: 25px;
+  font-size: 13px;
+}
+
+.blog-contents pre code {
+  background: #4c8ef7;
+}
+
+/* SECTION: Contact section. */
 
 .contact {
   background: url(../img/parallax-background.jpg) center center scroll;
