@@ -13,7 +13,7 @@
   <intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
 
   <!-- Image for link icon. -->
-  <link href="../img/link-icon.png" rel="icon" />
+  <link href="../img/favicon.png" rel="icon" />
 
   <!-- Bootstrap Core CSS -->
   <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -71,22 +71,131 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <p class="introduction">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda nihil aspernatur nemo sunt, qui, harum repudiandae quisquam eaque dolore itaque quod tenetur quo quos labore?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae expedita cumque necessitatibus ducimus debitis totam, quasi praesentium eveniet tempore possimus illo esse, facilis? Corrupti possimus quae ipsa pariatur cumque, accusantium tenetur
-            voluptatibus incidunt reprehenderit, quidem repellat sapiente, id, <code>earum</code> obcaecati.</p>
-          <pre>
-    p { color: red; }
-    body { background-color: #eee; }
+          <p class="introduction">Let's use Android's Accessibility Services to create an app that sends tap inputs for the user! This can be used to help test other apps or help users avoid injuries that occur from repetitive actions.</p>
 
-    if(true == true) {
-      return true;
-    }
-    else if (false == false) {
-      return false;
-    }
-    else if (1 < 4) {
-      return null;
-    }
+          <p>First, let's start off with a new Android project with an empty Activity. Note that the minimum SDK that the project must target is 24 for gesture inputs to work. I'll be using Kotlin for this tutorial, but the concepts that are used should
+            be able to be translated to Java without too much difficulty. However, as I don't fully understand how Accessibility Services work, I'll be adding comments to some of the code snippets that I post here - they're not necessary to make the app
+            work though.</p>
+
+          <p>After the project has been created, let's create a new class that extends from the AccessibilityService class. For this tutorial, I've named the file <code>InputTapService.kt</code>. Implement the methods that AccessibilityService requires,
+            but don't fill anything in yet. The file should look like the following:</p>
+
+          <pre>
+  package com.example.pzhou.inputtutorial
+
+  import android.accessibilityservice.AccessibilityService
+  import android.view.accessibility.AccessibilityEvent
+
+  class InputTapService : AccessibilityService()
+  {
+      <code class="comments">/**
+       * This method is called when the system wants to interrupt the feedback the
+       * Accessibility Service is providing. Typically, this method will be called
+       * in response to a user action, like moving focus to a different control.
+       */</code>
+      override fun onInterrupt()
+      {
+          TODO("not implemented")
+      }
+
+      <code class="comments">/**
+       * This method is called by the system when it detects an event that matches
+       * the event(s) specified by the Accessibility Service. For example, if this
+       * Accessibility Service specifies that button clicks are to be captured, any
+       * button click events that occur will cause the system to call this method.
+       *
+       * @param accessibilityEvent The event that occurred.
+       */</code>
+      override fun onAccessibilityEvent(accessibilityEvent: AccessibilityEvent?)
+      {
+          TODO("not implemented")
+      }
+  }
+          </pre>
+
+          <p>Then, because this is a Service, we need to add it to the <code>AndroidManifest.xml</code> file. In addition, we'll also need to ask for permission and add an intent filter for the system to bind to the Accessibility Service.</p>
+
+          <p class="sidenote">As a sidenote, I did some testing, and it seems that Accessibility Services run on the same thread as the app by default. For this reason, sending too many commands to the service leads to an Application Not Responding error. However, oddly
+            enough, while they were on the same thread, killing the app does not actually kill the Accessibility Service. </p>
+          <p>Just to be safe though, we'll put the service on a different process. </p>
+
+          <pre>
+  &lt;activity android:name=".MainActivity"&gt;
+    <code class="comments">Activity content here...</code>
+  &lt;/activity&gt;
+
+  &lt;service
+    android:name=".InputTapService"
+    android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+    android:process=":inputprocess"&gt;
+
+      &lt;intent-filter&gt;
+        &lt;action android:name="android.accessibilityservice.AccessibilityService"/&gt;
+      &lt;/intent-filter&gt;
+
+  &lt;/service&gt;
+
+  <code class="comments">Rest of &lt;application&gt; contents here...</code>
+          </pre>
+
+          <p>After the service has been added to the Android Manifest file, we'll need to configure the Accessibility Service. Configuration of the service can be done either via an XML file or programatically within <code>onServiceConnected()</code>. However,
+            to enable the service to dispatch gestures to the device, the XML configuration method is required.
+          </p>
+
+          <p>To do this, we'll first create an <code>xml</code> folder inside of the res directory. Then, inside of the <code>xml</code> folder, create an .xml file called <code>serviceconfig.xml</code>, and delete all of its contents. After that, add the
+            following code to the file (some of the elements are optional, and have been marked as such):
+          </p>
+
+          <pre>
+  &lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+  <code class="comments">&lt;!-- Explanation of tags:
+
+      android:accessibilityEventTypes - Lists the events that this service will listen
+          for. Since the service will be inputting gestures and not listening for any
+          events, it's fine to leave this blank. The typeAllMask will cause the service
+          to listen to all events. (OPTIONAL)
+
+      android:accessibilityFeedbackType - Feedback types that the service provides.
+          It's fine to set it to feedbackVisual for now. (REQUIRED)
+
+      android:accessibilityFlags - Set it to flagDefault. (REQUIRED)
+
+      android:canPerformGestures - Requires SDK 24+. This allows the service to send
+          gestures for the user. Set this to true. (REQUIRED)
+
+      android:packageNames - List of apps that the service will listen to and interact
+          with. If this field is empty, then the service will listen to and interact
+          with all applications. (OPTIONAL)
+  --&gt;</code>
+  &lt;accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+      android:accessibilityEventTypes=""
+      android:accessibilityFeedbackType="feedbackVisual"
+      android:accessibilityFlags="flagDefault"
+      android:canPerformGestures="true"
+      android:notificationTimeout="100"
+      android:packageNames=""
+  /&gt;
+          </pre>
+
+          <p>Once the configuration file has been created, we'll need to set the file as the configuration for our service. Go back to the Android Manifest file, and add a meta-data element inside of the service element so that it looks like this:
+          </p>
+
+          <pre>
+  &lt;service
+      android:name=".InputTapService"
+      android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+      android:process=":inputprocess"&gt;
+
+      &lt;intent-filter&gt;
+          &lt;action android:name="android.accessibilityservice.AccessibilityService" /&gt;
+      &lt;/intent-filter&gt;
+
+      <code class="comments">&lt;!-- Required to set the configuration of the service. --&gt;</code>
+      &lt;meta-data
+          android:name="android.accessibilityservice"
+          android:resource="@xml/serviceconfig" /&gt;
+  &lt;/service&gt;
           </pre>
         </div>
       </div>
