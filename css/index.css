@@ -129,7 +129,7 @@ body {
   display: table;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 50%;
   /* For some reason, adding linear-gradient to the background for the header fixed
    * that issue with there being a gap at the bottom.
    */

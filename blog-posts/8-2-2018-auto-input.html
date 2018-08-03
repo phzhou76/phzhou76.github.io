@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio">
+  <meta name="author" content="Phillip Zhou">
+  <title>Portfolio</title>
+
+  <!-- Image for link icon. -->
+  <link rel="shortcut icon" href="../favicon.png" type="image/png" />
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="../css/blog.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+  <!-- Navigation Sidebar -->
+  <nav id="sidebar-container">
+    <ul class="sidebar-nav">
+
+      <!-- Toggle button for the sidebar. -->
+      <a id="menu-toggle" href="#" class="btn btn-dark btn-lg pull-right menu-inactive">
+        <i id="menu-icon" class="fa fa-toggle-right"></i>
+      </a>
+
+      <li class="sidebar-brand">
+        <a href="#">Menu</a>
+      </li>
+
+      <!-- List of all menu items. -->
+      <li>
+        <a href="../index.html" class="disabled">Home</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- End of Navigation Sidebar. -->
+
+  <!-- Header section. -->
+  <header id="top" data-stellar-background-ratio="0.5" class="header">
+    <div class="header-text">
+      <h1>Implementing Auto-Input in Android</h1>
+      <h3>August 2, 2018 &bull; Posted by Phillip Zhou</h3>
+    </div>
+  </header>
+  <!-- End of Header section. -->
+
+  <!-- Blog contents section. -->
+  <section class="blog-contents">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p class="introduction">Let's use Android's Accessibility Services to create an app that sends tap inputs for the user! This can be used to help test other apps or help users avoid injuries that occur from repetitive actions.</p>
+
+          <p>First, let's start off with a new Android project with an empty Activity. Note that the minimum SDK that the project must target is 24 for gesture inputs to work. I'll be using Kotlin for this tutorial, but the concepts that are used should
+            be able to be translated to Java without too much difficulty. However, as I don't fully understand how Accessibility Services work, I'll be adding comments to some of the code snippets that I post here - they're not necessary to make the app
+            work though.</p>
+
+          <p>After the project has been created, let's create a new class that extends from the AccessibilityService class. For this tutorial, I've named the file <code>InputTapService.kt</code>. Implement the methods that AccessibilityService requires,
+            but don't fill anything in yet. The file should look like the following:</p>
+
+          <pre>
+  package com.example.pzhou.inputtutorial
+
+  import android.accessibilityservice.AccessibilityService
+  import android.view.accessibility.AccessibilityEvent
+
+  class InputTapService : AccessibilityService()
+  {
+      <code class="comments">/**
+       * This method is called when the system wants to interrupt the feedback the
+       * Accessibility Service is providing. Typically, this method will be called
+       * in response to a user action, like moving focus to a different control.
+       */</code>
+      override fun onInterrupt()
+      {
+          TODO("not implemented")
+      }
+
+      <code class="comments">/**
+       * This method is called by the system when it detects an event that matches
+       * the event(s) specified by the Accessibility Service. For example, if this
+       * Accessibility Service specifies that button clicks are to be captured, any
+       * button click events that occur will cause the system to call this method.
+       *
+       * @param accessibilityEvent The event that occurred.
+       */</code>
+      override fun onAccessibilityEvent(accessibilityEvent: AccessibilityEvent?)
+      {
+          TODO("not implemented")
+      }
+  }
+          </pre>
+
+          <p>Then, because this is a service, we need to add it to the <code>AndroidManifest.xml</code> file. In addition, we'll also need to ask for permission and add an intent filter for the system to bind to the Accessibility Service.</p>
+
+          <p class="sidenote">As a sidenote, I did some testing, and it seems that Accessibility Services run on the same thread as the app by default. For this reason, sending too many commands to the service leads to an Application Not Responding error. However, oddly
+            enough, while they were on the same thread, killing the app does not actually kill the Accessibility Service. </p>
+          <p>Just to be safe though, we'll put the service on a different process. </p>
+
+          <pre>
+  &lt;activity android:name=".MainActivity"&gt;
+    <code class="comments">Activity content here...</code>
+  &lt;/activity&gt;
+
+  &lt;service
+    android:name=".InputTapService"
+    android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+    android:process=":inputprocess"&gt;
+
+      &lt;intent-filter&gt;
+        &lt;action android:name="android.accessibilityservice.AccessibilityService"/&gt;
+      &lt;/intent-filter&gt;
+
+  &lt;/service&gt;
+
+  <code class="comments">/* Rest of &lt;application&gt; contents here... */</code>
+          </pre>
+
+          <p>After the service has been added to the Android Manifest file, we'll need to configure the Accessibility Service. Configuration of the service can be done either via an XML file or programatically within <code>onServiceConnected()</code>. However,
+            to enable the service to dispatch gestures to the device, the XML configuration method is required.
+          </p>
+
+          <p>To do this, we'll first create an <code>xml</code> folder inside of the res directory. Then, inside of the <code>xml</code> folder, create an .xml file called <code>serviceconfig.xml</code>, and delete all of its contents. After that, add the
+            following code to the file (some of the elements are optional, and have been marked as such):
+          </p>
+
+          <pre>
+  &lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+  <code class="comments">&lt;!-- Explanation of tags:
+
+      android:accessibilityEventTypes - Lists the events that this service will listen
+          for. Since the service will be inputting gestures and not listening for any
+          events, it's fine to leave this blank. The typeAllMask will cause the service
+          to listen to all events. (OPTIONAL)
+
+      android:accessibilityFeedbackType - Feedback types that the service provides.
+          It's fine to set it to feedbackVisual for now. (REQUIRED)
+
+      android:accessibilityFlags - Set it to flagDefault. (REQUIRED)
+
+      android:canPerformGestures - Requires SDK 24+. This allows the service to send
+          gestures for the user. Set this to true. (REQUIRED)
+
+      android:packageNames - List of apps that the service will listen to and interact
+          with. If this field is empty, then the service will listen to and interact
+          with all applications. (OPTIONAL)
+  --&gt;</code>
+  &lt;accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+      android:accessibilityEventTypes=""
+      android:accessibilityFeedbackType="feedbackVisual"
+      android:accessibilityFlags="flagDefault"
+      android:canPerformGestures="true"
+      android:notificationTimeout="100"
+      android:packageNames=""
+  /&gt;
+          </pre>
+
+          <p>Once the configuration file has been created, we'll need to set the file as the configuration for our service. Go back to the Android Manifest file, and add a meta-data element inside of the service element so that it looks like this:
+          </p>
+
+          <pre>
+  &lt;service
+      android:name=".InputTapService"
+      android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+      android:process=":inputprocess"&gt;
+
+      &lt;intent-filter&gt;
+          &lt;action android:name="android.accessibilityservice.AccessibilityService" /&gt;
+      &lt;/intent-filter&gt;
+
+      <code class="comments">&lt;!-- Required to set the configuration of the service. --&gt;</code>
+      &lt;meta-data
+          android:name="android.accessibilityservice"
+          android:resource="@xml/serviceconfig" /&gt;
+  &lt;/service&gt;
+          </pre>
+
+          <p>Next, we'll need a way to access the Accessibility Service's functions.
+          </p>
+
+          <p>We can do this by using a proxy service that the app can bind to and send commands to. The proxy service, in turn, uses the information that the app gives it to have the Accessibility Service send input taps at specific locations.
+          </p>
+
+          <p>To do this, we'll first implement the Singleton pattern in our Accessibility Service so that we can obtain an instance of it if it's available. Modify the <code>InputTapService.kt</code> file so that it has the Singleton implementation.
+          </p>
+
+          <pre>
+  class InputTapService : AccessibilityService()
+  {
+      companion object
+      {
+          private var SHARED_INSTANCE: InputTapService? = null
+
+          fun getSharedInstance(): InputTapService?
+          {
+              return SHARED_INSTANCE
+          }
+      }
+
+      <code class="comments">/**
+       * This method is called when the Android system binds to the Accessibility
+       * Service.
+       */</code>
+      override fun onServiceConnected()
+      {
+          super.onServiceConnected()
+          SHARED_INSTANCE = this
+      }
+
+      <code class="comments">/**
+       * This method is called when Android unbinds from the Accessibility Service.
+       *
+       * @return True if onRebind(Intent) should be called when new clients bind to
+       *      the Service.
+       */</code>
+      override fun onUnbind(intent: Intent?): Boolean
+      {
+          SHARED_INSTANCE = null
+          return super.onUnbind(intent)
+      }
+
+      <code class="comments">/* Rest of file... */</code>
+          </pre>
+
+          <p>Now that we've created a way for another service to access our Accessibility Service, we can now create the proxy service. Create another class and call the file <code>InputProxyService.kt</code>, and have the class extend the <code>Service</code>            class. For now, override the required <code>onBind()</code> function, but don't add anything to it, so that it looks like the following:
+          </p>
+
+          <pre>
+  package com.example.pzhou.inputtutorial
+
+  import android.app.Service
+  import android.content.Intent
+  import android.os.IBinder
+
+  class InputProxyService : Service()
+  {
+      override fun onBind(intent: Intent?): IBinder
+      {
+          TODO("not implemented")
+      }
+  }
+          </pre>
+
+          <p>Then, since this is also a service, we need to add it to the Android Manifest file. In this case, we'll add it to the same process as the Accessibility Service so that we can access it directly.
+          </p>
+
+          <pre>
+      <code class="comments">&lt;-- Rest of Accessibility Service contents. --&gt;</code>
+      &lt;/service&gt;
+
+      &lt;service android:name=".InputProxyService"
+               android:process=":inputprocess"/&gt;
+
+  &lt;/application&gt;
+          </pre>
+
+          <p>Since the proxy service will be on a different process than that of the app, we need to use Messengers and Handlers so that the app can send input commands over to the proxy service. Let's start by first creating the Handler, which can be named
+            <code>InputTapHandler.kt</code>. Have the class extend the <code>Handler</code> class (the android.os.Handler version), but have the constructor take in an instance of the <code>InputProxyService</code> class we created previously.
+          </p>
+
+          <p>When the app sends commands over to the proxy service, the Handler will take the incoming Messages and call the appropriate methods contained within <code>InputProxyService</code>.
+          </p>
+
+          <p>In addition, override the <code>handleMessage()</code> function for now, but don't add anything to it. The file's contents should look like the following:
+          </p>
+
+          <pre>
+  package com.example.pzhou.inputtutorial
+
+  import android.os.Handler
+  import android.os.Message
+
+  class InputTapHandler(inputProxyService: InputProxyService): Handler()
+  {
+      private val mInputProxyService: InputProxyService = inputProxyService
+
+      override fun handleMessage(message: Message?)
+      {
+          super.handleMessage(message)
+      }
+  }
+          </pre>
+
+          <p>Then, back in <code>InputProxyService.kt</code>, create a Messenger member variable and instantiate it with an instance of the custom Handler passed in. In addition, now that we've created a Messenger, transform the Messenger into an IBinder
+            object and return it in <code>onBind()</code>, which the app will obtain when it binds to the proxy service.
+          </p>
+
+          <pre>
+  class InputProxyService : Service()
+  {
+      <code class="comments">/* The app will use this Messenger to send input commands to the proxy service. */</code>
+      private val mMessenger: Messenger = Messenger(InputTapHandler(this))
+
+      override fun onBind(intent: Intent?): IBinder
+      {
+          return mMessenger.binder
+      }
+  }
+          </pre>
+
+          <p>Next, we can add a method to the proxy service that uses the Accessibility Service to send an input at a certain location on the device. Create a public function called <code>sendInputTap()</code>, and have it take two floats, one for the x
+            coordinate, and one for the y coordinate.
+          </p>
+
+          <p class="sidenote">Accessibility Services can be used to dispatch gestures, which are composed of one or more strokes. Each stroke, in turn, is described by a path, which is defined by a set of points in a certain order.
+          </p>
+
+          <p>Inside of the <code>sendInputTap()</code> method, we'll first instantiate the builder for the gesture. Then, we'll create a path for the gesture. While the path can consist of multiple points to actually create a path, we'll only input one point
+            since we just need a single tap. After using the path to create a stroke, we'll add the stroke to the builder and finally call <code>dispatchGesture()</code> to send the input to the device.
+          </p>
+
+          <pre>
+  fun sendInputTap(xCoordinate: Float, yCoordinate: Float)
+  {
+      val gestureDescriptionBuilder = GestureDescription.Builder()
+
+      val path = Path()
+      path.moveTo(xCoordinate, yCoordinate)
+
+      val gestureStrokeDescription = GestureDescription.StrokeDescription(path,
+              1, 1)
+      gestureDescriptionBuilder.addStroke(gestureStrokeDescription)
+
+      val gestureDescription = gestureDescriptionBuilder.build()
+
+      <code class="comments">/* Delay for testing purposes. */</code>
+      Thread.sleep(5000)
+
+      InputTapService.getSharedInstance()?.dispatchGesture(gestureDescription,
+              null, null)
+  }
+          </pre>
+
+          <p class="sidenote">The <code>Thread.sleep(5000)</code> is actually not necessary, but since we want to see if the Accessibility Service can actually deliver a gesture to the device, the delay is placed there so the user can switch to the home screen or another
+            app to test if a tap occurred.
+          </p>
+
+          <p>Now, we'll have to create the data structure that holds the coordinate information for the gesture. The app will send a Message, which holds this data structure, to the Handler, which will then relay the coordinates to the proxy service.
+          </p>
+
+          <p>Begin by creating a new file called <code>InputPoint.kt</code>, and just create two member variables of type float; one for the x coordinate and one for the y coordinate.
+          </p>
+
+          <pre>
+  package com.example.pzhou.inputtutorial
+
+  class InputPoint
+  {
+      var xCoordinate: Float = 0.0f
+      var yCoordinate: Float = 0.0f
+  }
+          </pre>
+
+          <p>There's a catch to this though - we'll be sending the information from an Activity to the proxy service, which is on a different process. So, we'll need to utilize Parcels to transfer data across processes. Have the <code>InputPoint</code> class
+            extend the <code>Parcelable</code> class, and implement its required methods. The full implementation should look like the following:
+          </p>
+
+          <pre>
+  package com.example.pzhou.inputtutorial
+
+  import android.os.Parcel
+  import android.os.Parcelable
+
+  class InputPoint(xCoordinate: Float, yCoordinate: Float) : Parcelable
+  {
+      var mXCoordinate: Float = xCoordinate
+      var mYCoordinate: Float = yCoordinate
+
+      private constructor(parcel: Parcel) : this(
+              parcel.readFloat() <code class="comments">/* mXCoordinate */</code>,
+              parcel.readFloat() <code class="comments">/* mYCoordinate */</code>
+      )
+
+      override fun writeToParcel(parcel: Parcel, flags: Int)
+      {
+          parcel.writeFloat(mXCoordinate)
+          parcel.writeFloat(mYCoordinate)
+      }
+
+      override fun describeContents(): Int
+      {
+          return 0
+      }
+
+      companion object CREATOR : Parcelable.Creator&lt;InputPoint&gt;
+      {
+          override fun createFromParcel(parcel: Parcel): InputPoint
+          {
+              return InputPoint(parcel)
+          }
+
+          override fun newArray(size: Int): Array&lt;InputPoint?&gt;
+          {
+              return arrayOfNulls(size)
+          }
+      }
+  }
+          </pre>
+
+          <p>Now that the data structure for the input point has been created, we can fill in the details for the Handler.
+          </p>
+
+          <p> The InputPoint object will be stored inside a Bundle when the Activity sends it to the service, so we need to first extract the Bundle from the Message object. Then, we need to set the class loader for the Bundle so that we can extract the InputPoint
+            object properly. After that, we can extract the InputPoint object from the Bundle and send its data to the proxy service.
+          </p>
+
+          <pre>
+  class InputTapHandler(inputProxyService: InputProxyService): Handler()
+  {
+      private val mInputProxyService: InputProxyService = inputProxyService
+
+      override fun handleMessage(message: Message?)
+      {
+          message?.let { validMessage ->
+
+              val messageBundle: Bundle? = validMessage.obj as? Bundle
+
+              messageBundle?.let { validBundle ->
+
+                  <code class="comments">/* Need to set class loader for the bundle before obtaining its Parcelable. */</code>
+                  validBundle.classLoader = InputPoint::class.java.classLoader
+
+                  val inputPoint = validBundle.getParcelable&lt;InputPoint&gt;(MainActivity.COORDINATES)
+                  mInputProxyService.sendInputTap(inputPoint.mXCoordinate,
+                          inputPoint.mYCoordinate)
+
+              }
+          }
+      }
+  }
+          </pre>
+
+          <p class="sidenote">Don't worry if the <code>MainActivity.COORDINATES</code> gives you an error! We'll be adding that shortly.</p>
+
+          <p>Almost done! We'll get started on the Activity portion of the app by hooking up the Activity to the proxy service. We'll need three member variables to accomplish this.
+          </p>
+
+          <p>The first one should be a boolean that denotes whether or not the Activity is bound (or connected) to the service. This is required since we need to always check if we're connected to the service before sending Messages to it.
+          </p>
+
+          <p>Next, we need a reference to the proxy service's Messenger to send Messages to it.
+          </p>
+
+          <p>Lastly, we need a reference to a custom ServiceConnection object, which will take care of setting the previously mentioned boolean and obtain a reference to the proxy service's Messenger. We can accomplish this by using an anonymous class that
+            extends from the ServiceConnection class and override its <code>onServiceDisconnected()</code> and <code>onServiceConnected()</code> methods.
+          </p>
+
+          <pre>
+  class MainActivity : AppCompatActivity()
+  {
+      private var mIsBound = false
+      private var mInputMessenger: Messenger? = null
+      private val mServiceConnection: ServiceConnection = object : ServiceConnection
+      {
+          <code class="comments">/**
+           * This method is only called if the client unexpectedly disconnects from
+           * the service.
+           */</code>
+          override fun onServiceDisconnected(componentName: ComponentName?)
+          {
+              mIsBound = false
+          }
+
+          <code class="comments">/**
+           * This method is called if the client successfully connects to the service.
+           *
+           * @param binder The binder that contains a Messenger or a reference to the
+           *      service.
+           */</code>
+          override fun onServiceConnected(componentName: ComponentName?, binder: IBinder?)
+          {
+              binder?.let {
+                  mInputMessenger = Messenger(binder)
+                  mIsBound = true
+              }
+          }
+      }
+
+      override fun onCreate(savedInstanceState: Bundle?)
+      {
+          super.onCreate(savedInstanceState)
+          setContentView(R.layout.activity_main)
+      }
+  }
+          </pre>
+
+          <p>Now, we'll have to find somewhere in the Activity lifecycle to bind to and unbind from the proxy service.
+          </p>
+
+          <p class="sidenote">Typically, it's best practice to do so in onStart and onStop, respectively. The reason for this is that lifecycle methods like onResume and onPause occur too frequently, which would lead to the Activity binding to and unbinding from the service
+            frequently, causing more processing load on the app.
+          </p>
+
+          <p>Override the <code>onStart()</code> and the <code>onStop()</code> methods in MainActivity and insert the following:
+          </p>
+
+          <pre>
+  override fun onStart()
+  {
+     super.onStart()
+
+     val intent = Intent(this, InputProxyService::class.java)
+     bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE)
+  }
+
+  override fun onStop()
+  {
+     super.onStop()
+
+     if (mIsBound)
+     {
+         unbindService(mServiceConnection)
+         mIsBound = false
+     }
+  }
+          </pre>
+
+          <p>We'll start adding items to the layout. Switch to <code>activity_main.xml</code> and add two Number EditTexts and one Button, so that it looks like the following:
+          </p>
+
+          <img src="../img/blog/auto-input-layout.png">
+
+          <p>For reference, I've named the two Number EditTexts editTextXCoordinate and editTextYCoordinate, and the Button buttonSendCoordinates.
+          </p>
+
+          <p>Then, back in <code>MainActivity.kt</code>, add a public static String named <code>COORDINATES</code>, and add a listener to the Button.
+          </p>
+
+          <pre>
+  class MainActivity : AppCompatActivity()
+  {
+      companion object
+      {
+          const val COORDINATES = "COORDINATES"
+      }
+
+      private var mIsBound = false
+      private var mInputMessenger: Messenger? = null
+      private val mServiceConnection: ServiceConnection = object : ServiceConnection
+      {
+          <code class="comments">/* ServiceConnection contents here... */</code>
+      }
+
+      override fun onCreate(savedInstanceState: Bundle?)
+      {
+          super.onCreate(savedInstanceState)
+          setContentView(R.layout.activity_main)
+
+          buttonSendCoordinates.setOnClickListener {
+
+          }
+      }
+
+      <code class="comments">/* onStart and onStop implementations here... */</code>
+  }
+          </pre>
+
+          <p>Lastly, add the following to the contents of the Button listener:
+          </p>
+
+          <pre>
+  buttonSendCoordinates.setOnClickListener {
+    <code class="comments">/* Only send coordinates if the Activity is connected to the service. */</code>
+    if (mIsBound)
+    {
+        val message = Message.obtain()
+
+        val coordinates = InputPoint(editTextXCoordinate.text.toString().toFloat(),
+                editTextYCoordinate.text.toString().toFloat())
+
+        <code class="comments">/* Place InputPoint object into a Bundle as a Parcelable object. */</code>
+        val coordinateBundle = Bundle()
+        coordinateBundle.putParcelable(COORDINATES, coordinates)
+
+        <code class="comments">/* Have the Message hold the Bundle. */</code>
+        message.obj = coordinateBundle
+
+        try
+        {
+            mInputMessenger?.send(message)
+        }
+        catch (e: RemoteException)
+        {
+            e.printStackTrace()
+        }
+    }
+  }
+          </pre>
+
+          <p>And that's it! Be sure to enable the app in the Accessibility section of your device before testing the app. Enter in clickable coordinates into the EditText fields, click the Button, and switch to the home screen or another app before 5 seconds pass to see the click occur!
+          </p>
+
+          <p>The Github repository that contains the final files for this tutorial can be found <a href="https://github.com/phzhou76/InputTutorial">here</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Blog contents section. -->
+
+  <!-- Contact section. -->
+  <footer id="contact" data-stellar-background-ratio="0.25" class="contact bg-primary">
+    <div class="container">
+
+      <!-- Contacts title. -->
+      <div class="row mb-5">
+        <h1>Contact Info</h1>
+      </div>
+
+      <!-- Icon and info row. -->
+      <div class="row mb-5">
+        <!-- Icons column. -->
+        <div id="icons" class="col-md-4">
+          <ul class="list-unstyled">
+            <li><i class="fa fa-phone fa-2x"></i></li>
+            <li><i class="fa fa-envelope-o fa-2x"></i></li>
+            <li><i class="fa fa-linkedin-square fa-2x"></i></li>
+          </ul>
+        </div>
+
+        <!-- Info column. -->
+        <div id="info" class="col-md-4">
+          <ul class="list-unstyled">
+            <li>
+              <h3>(925) 719-9407</h3></li>
+            <li>
+              <h3><a id="email" href="mailto:pzhou53@gmail.com">pzhou53@gmail.com</a></h3>
+            </li>
+            <li>
+              <h3><a id="linked-in" href="https://www.linkedin.com/in/phzhou">linkedin.com/in/phzhou</a></h3>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+  <!-- End of Contact section. -->
+
+  <!-- jQuery. -->
+  <script src="../js/jquery.js" type="text/javascript"></script>
+
+  <!-- Bootstrap Core JavaScript. -->
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+
+  <!-- Stellar JavaScript. -->
+  <script src="../js/jquery.stellar.min.js" type="text/javascript"></script>
+
+  <!-- Javascript functions for the Portfolio. -->
+  <script src="../js/blog.js" type="text/javascript"></script>
+
+</body>
+
+</html>

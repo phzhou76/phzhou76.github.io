@@ -230,6 +230,12 @@ body {
   color: #4ac492;
 }
 
+.blog-contents img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* SECTION: Contact section. */
 
 .contact {
